@@ -13,13 +13,11 @@ function Home()
     
     //lay user va link
     const user=useSelector(userSelector);
-    console.log("User home.jxs "+user);
+    console.log("User home.jxs ");
+    console.log(user);
     const link= useSelector(urlSelector);
-    console.log("link home.jxs "+link);
     const shortLink=useSelector(shortUrlSelector); 
-    console.log("shortlink home.jxs "+shortLink);
     const token=useSelector(tokenSelector);
-    console.log("token home.jxs "+token);
 
     //su dung de thuc hien action
     const dispatch=useDispatch();
@@ -39,9 +37,8 @@ function Home()
 
     //xu ly nut short 
     const handleShort=()=>{
-        console.log(user);
         const fetchShort = async()=>{
-            console.log(user);
+  
             //neu co user thi gui len userId 
             // van con vuong cho axios.post (url,tailUrl,userId)
             // tai sao lai push 3 doi so nhu the 

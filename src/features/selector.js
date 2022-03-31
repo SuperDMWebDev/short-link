@@ -1,4 +1,7 @@
 export const userSelector = (state)=>{
+    // tra ve user
+    // co s boi vi luu gia tri o store la users
+    //va links
     console.log(state);
     return state.users.user;
 }

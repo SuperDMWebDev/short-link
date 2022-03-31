@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 
 import Header from '../../components/header/Header';
-import style from './register.module.scss';
+import style from './Register.module.scss';
 
 const Register=()=>{
     const navigate=useNavigate();
@@ -17,7 +17,24 @@ const Register=()=>{
     const [status,setStatus]=useState()
 
     const handleRegister=async()=>{
-       
+       if(!userName||!passWord||!restartPassword)
+       {
+           setStatus(1);
+       }
+       else{
+           const res= await axios.post("https://shortlinkdm.herokuapp.com/api/auth/register",{
+               username:userName,
+               password:passWord,
+               rePassword:restartPassword
+           })
+           console.log("Thong tin sau khi dang ky");
+           console.log(res.data);
+           setStatus(res.data.enumError);
+           if(res.data.success)
+           {
+               navigate('/login');
+           }
+       }
     }
     useEffect(() => {
         if(status === 1) {
@@ -47,24 +64,24 @@ const Register=()=>{
                                 <span>Tên đăng nhập</span>
                                 <input
                                     type="email"
-                                    value={username}
-                                    onChange={e => setUsername(e.target.value)}
+                                    value={userName}
+                                    onChange={e => setUserName(e.target.value)}
                                 />
                             </div>
                             <div className={style.inputButton}>
                                 <span>Mật khẩu</span>
                                 <input
                                     type="password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
+                                    value={passWord}
+                                    onChange={e => setPassWord(e.target.value)}
                                 />
                             </div>
                             <div className={style.inputButton}>
                                 <span>Nhập lại mật khẩu</span>
                                 <input
                                     type="password"
-                                    value={rePassword}
-                                    onChange={e => setRePassword(e.target.value)}
+                                    value={restartPassword}
+                                    onChange={e => setRestartPassword(e.target.value)}
                                     onKeyPress={e => e.key === 'Enter' && handleRegister()}
                                 />
                             </div>
@@ -83,3 +100,4 @@ const Register=()=>{
         </>
     )
 }
+export default Register;

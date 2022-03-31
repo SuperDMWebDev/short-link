@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
+// o day tai sao no lai tao thanh ten la userSlice
 export default createSlice({
     name:'user',
     initialState:{

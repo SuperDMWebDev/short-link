@@ -26,7 +26,7 @@ const Login= ()=>{
         else{
             //axios gui thong tin len server de nhan ve data
 
-            const res= await axios.post('https://shortlink123.herokuapp.com/api/auth/login',{
+            const res= await axios.post('https://shortlinkdm.herokuapp.com/api/auth/login',{
                 username:userName,
                 password:passWord
             })
@@ -41,6 +41,7 @@ const Login= ()=>{
             if(res.data.success){
                 //du lieu khi dang nhap than hcong
                 // da cap nhat user 
+                //res.data day la 1 user 
                 dispatch(userSlice.actions.login(res.data))
                 localStorage.setItem('user', JSON.stringify(res.data.info))
                 localStorage.setItem('token', JSON.stringify(res.data.accessToken))
